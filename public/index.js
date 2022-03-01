@@ -15,13 +15,10 @@ export const _app = initializeApp(cred);
 
 const auth = getAuth();
 
+const signin_form = document.getElementById('signin');
 
-
-
-const login_form = document.getElementById('signin');
-
-if (login_form) {
-    login_form.onsubmit = e => {
+if (signin_form) {
+    signin_form.onsubmit = e => {
         e.preventDefault();
         document.getElementById('signin-status').innerHTML = " ";
         const email = e.target.email.value;
@@ -61,22 +58,42 @@ if (signup_form) {
     };
 }
 
-
+// ###################################################
 onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const uid = user.uid;
-        console.log(uid);
-    } else {
-        // User is signed out
-        console.log('====================================');
-        console.log("User not found");
-        console.log('====================================');
+    if(user){
+        localStorage.setItem('uid', user.uid);
+        document.querySelectorAll('a[title=auth]').forEach(node => {
+            // console.log(node);
+            node.style.display = 'block'
+        })
+        document.getElementById('panel').innerText = user.email;
+        document.querySelectorAll('a[title=authdone]').forEach(node=>{
+            node.style.display = 'none'
+        })
+    }
+    else{
+        document.querySelectorAll('a[title=auth]').forEach(node => {
+            // console.log(node);
+            node.style.display = 'none'
+        })
     }
 });
 
-const signout_btn = document.getElementById('signout')
 
-if (signout_btn){
-    signOut(auth);
-}
+const signout_button = document.getElementById("signout");
+signout_button.onclick = () => {
+    signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            console.log("signout");
+            location.reload();
+        })
+        .catch((error) => {
+            // An error happened.
+            console.log("error:signout");
+        });
+};
+
+
+
 // ######################################
