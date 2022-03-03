@@ -1,10 +1,11 @@
 import { _app } from "./index.js"
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js"
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-storage.js"
 
 const profile = document.getElementById('profile');
 const storage = getStorage();
 const db = getFirestore();
+const id = localStorage.getItem('uid');
 
 if(localStorage.getItem("user")) {
     const user = JSON.parse(localStorage.setItem("user"));
@@ -12,6 +13,7 @@ if(localStorage.getItem("user")) {
     document.querySelector("input[name = address]").Placeholder = user["address"];
     document.querySelector("input[name = phone]").Placeholder = user["phone"];
     document.querySelector("input[name = website]").Placeholder = user["website"];
+    document.getElementById('show-img').src = user["url"];
 }
 
 if (profile) {
@@ -44,3 +46,23 @@ if (profile) {
 
     }
 }
+window.addEventListener('DOMContentLoaded',()=>{
+    if (document.getElementById('profile') && !localStorage.getItem('user') ) {
+        getDoc(doc(db, "user", id))
+            .then((doc)=>{
+                const {username, addres, phone, website} = doc.data();
+                document.querySelector("input[name = username]").Placeholder = user["username"];
+                document.querySelector("input[name = address]").Placeholder = user["address"];
+                document.querySelector("input[name = phone]").Placeholder = user["phone"];
+                document.querySelector("input[name = website]").Placeholder = user["website"];
+                document.getElementById('show-img').src = user["url"];
+            })
+    }
+})
+[
+{
+    "email":"",
+    "title":"",
+    "body":""
+}
+]

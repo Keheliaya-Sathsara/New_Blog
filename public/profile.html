@@ -18,10 +18,12 @@
      <script defer src="/__/firebase/9.6.7/firebase-performance-compat.js"></script>
 
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
 </head>
 <body>
-  <div class="w3-bar w3-light-grey w3-border">
+  <nav class="w3-bar w3-light-grey w3-border">
     <a href="./index.html" class="w3-bar-item w3-button w3-green"><i class="fa fa-home"></i></a>
     <a href="./profile.html" class="w3-bar-item w3-button" title="auth"><i class="fas fa-address-card"></i></a>
     
@@ -32,6 +34,10 @@
     <a href="#" class="w3-bar-item w3-button" id="signout" title="auth"><i class="fas fa-sign-out"></i></i></a>
     <a href="#" class="w3-bar-item w3-button"><i class="fas fa-power-off"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-right" id="panel" title="auth"></a>
+    </nav>
+
+    <div class="w3-center" style="margin-right: auto;margin-left:auto">
+      <img src="" alt="" id="show-img" class="w3-image w3-round">
     </div>
 
     <form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" enctype="multipart/form-data" id="profile">
@@ -45,7 +51,7 @@
         </div>
         
         <div class="w3-row w3-section">
-          <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+          <div class="w3-col" style="width:50px"><i class="fa-solid fa-address-book"></i></div>
             <div class="w3-rest">
               <input class="w3-input w3-border" name="address" type="text" placeholder="address">
             </div>

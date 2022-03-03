@@ -85,14 +85,16 @@ signout_button.onclick = () => {
     signOut(auth)
         .then(() => {
             // Sign-out successful.
+            localStorage.removeItem('user')
             console.log("signout");
-            location.reload();
+            location.href = "./";
         })
         .catch((error) => {
             // An error happened.
             console.log("error:signout");
         });
 };
+
 
 
 
